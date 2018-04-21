@@ -343,7 +343,7 @@ void td_page_cycle_link(td_page p) {
 }
 const wchar_t* td_page_get_link(td_page p) {
   Page& page = *static_cast<Page*>(p.ptr);
-  if (page.links.empty())
+  if (page.links.empty() || page.currentLink == -1)
     return nullptr;
   return page.links.at(page.currentLink).href.c_str();
 }
