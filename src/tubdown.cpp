@@ -7,12 +7,38 @@ void Page::Render(void *userData)  {
 
   int y = top;
 
-  for (auto line : lines) {
-    renderer->write_n_string(userData, y, 4, line.c_str(), line.length());
+  int height = renderer->height(userData);
+
+  auto it = lines.begin();
+  std::advance(it, scrollPosition);
+  while (it != lines.end() && y < height) {
+    renderer->write_n_string(userData, y, 4, it->c_str(), it->length());
     y += 1;
+    it++;
   }
 
-  int height = renderer->height(userData);
+  int currentTop = scrollPosition;
+  int currentBottom = scrollPosition + y;
+
+  float proportionOfBufferShown = (currentBottom - currentTop) / (float)lines.size();
+
+  wchar_t bg = L'│';
+  wchar_t fg = L'▒';
+
+  for (int y = top; y < height && y <= currentBottom; y++) {
+    renderer->write_n_string(userData, y, 0, &bg, 1);
+  }
+
+  if (proportionOfBufferShown < 1) {
+    int topOffset = (int)((currentTop / (float)lines.size()) * (height-2));
+    int bottomOffset = (int)((currentBottom / (float)lines.size()) * (height-2));
+
+    for (int y = top + topOffset; y <= bottomOffset; y++) {
+      renderer->write_n_string(userData, y, 0, &fg, 1);
+    }
+
+  }
+
   //renderer->write_string(userData, height-2,0, L"controls: link(unselected) link(selected) - TAB: cycle, SPACE: follow, b: back");
   //renderer->apply_style(userData, height-2, 10, 25-10 +1, 0, TD_COLOR_MAGENTA_ON_WHITE);
   //renderer->apply_style(userData, height-2, 27, 40-27 +1, TD_STYLE_FLAG_REVERSED, TD_COLOR_MAGENTA_ON_WHITE);
@@ -348,12 +374,22 @@ const wchar_t* td_page_get_link(td_page p) {
   return page.links.at(page.currentLink).href.c_str();
 }
 
+void td_page_scroll(td_page p, void *user_data, int scroll) {
+  Page& page = *static_cast<Page*>(p.ptr);
+  int newPosition = page.scrollPosition + scroll;
+  if (newPosition < 0)
+    newPosition = 0;
+  if (newPosition > (page.lines.size() - page.renderer->height(user_data) + 2))
+    newPosition = (page.lines.size() - page.renderer->height(user_data) + 2);
+  page.scrollPosition = newPosition;
+    
+}
+
 td_history td_history_new() {
   return {new std::list<td_page>()};
 }
 void td_history_delete(td_history history) {
   delete static_cast<std::list<td_page>*>(history.ptr);
-
 }
 td_page td_history_pop(td_history history) {
   auto list = static_cast<std::list<td_page>*>(history.ptr);

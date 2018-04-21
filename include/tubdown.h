@@ -68,6 +68,7 @@ void td_page_get_current_location(td_page page, int *line, int *col);
 void td_page_render(td_page page, void *user_data);
 void td_page_cycle_link(td_page page);
 const wchar_t* td_page_get_link(td_page page);
+void td_page_scroll(td_page page, void *user_data, int scroll);
 
 td_history td_history_new();
 void td_history_delete(td_history history);

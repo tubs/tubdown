@@ -35,7 +35,7 @@ static int apply_style(void *user_data, int y, int x, int length, uint8_t flags,
 
 static int height(void *user_data) {
   td_uncursed_data *data = (td_uncursed_data *)user_data;
-  return data->window->maxy - data->window->y + 1;
+  return data->window->maxy + 1;
 }
 
 static int td_uncursed_clear(void *user_data) {

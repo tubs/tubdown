@@ -50,6 +50,8 @@ struct Page {
   int currentLink = -1;
   td_renderer *renderer = nullptr;
 
+  int scrollPosition = 0;
+
   void Render(void *userData);
   Page(TubdownConfig& config, const std::string& fileName);
   Page() {};

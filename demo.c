@@ -35,6 +35,18 @@ int main(int argc, char **argv) {
       case 'Q':
       case KEY_ESCAPE:
         goto end;
+      case 4:
+        td_page_scroll(current, window_data, renderer.height(window_data) / 2);
+        break;
+      case 21:
+        td_page_scroll(current, window_data, -renderer.height(window_data) / 2);
+        break;
+      case 'j':
+        td_page_scroll(current, window_data, 1);
+        break;
+      case 'k':
+        td_page_scroll(current, window_data, -1);
+        break;
       case '\t':
         td_page_cycle_link(current);
         break;
@@ -58,6 +70,8 @@ int main(int argc, char **argv) {
             current = back;
         }
         break;
+      default:
+        printf("%x\n", k);
     }
     td_page_render(current, window_data);
 

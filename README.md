@@ -19,11 +19,12 @@ Resulting binary is at ./build/tubdown, run it from the main directory as it is 
 
 = Using (note this functionality is part of demo.c, not native to tubdown, though tubdown does provide some utilities to make this stuff trivial).
 
-TAB: cycles through links
-
-SPACE: follow active link
-
-b: return to previous page
-
-Q/Esc: Quit
+```
+TAB:                  cycles through links
+SPACE:                follow active link
+b:                    return to previous page
+Q/Esc:                quit
+j/k:                  scroll down/up (1 line)
+Ctrl-D/Ctrl-U         scroll down/up (half-screen)
+```
 
