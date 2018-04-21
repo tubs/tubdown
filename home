@@ -1,0 +1,26 @@
+= Welcome to Tubdown \yellow{(v0.1)}
+
+
+bol odio vel et vitae quo similique est.
+Explicabo ut maxime assumenda qui quis similique.
+Sed soluta rem fugiat modi sit.
+Ea odit officiis vel eum voluptas nihil voluptatem non.
+Non dolor perferendis nihil sit labore nulla expedita.
+
+This line has some text that is _underlined_.
+This line has some text that is *bold*.
+
+\item:{}
+
+\quote{
+This is a quote
+}
+
+This is a \link:page1{link} to another page
+This is a \link:page2{link with tons of spaces} to another page.
+
+\red{This text is in red}
+
+\red{This} \blue{text} \green{is} \yellow{*_in_*} \magenta{_different_} \cyan{*colors*}
+
+
