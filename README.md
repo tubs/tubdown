@@ -28,4 +28,4 @@ j/k:                  scroll down/up (1 line)
 Ctrl-D/Ctrl-U         scroll down/up (half-screen)
 ```
 
-![Screenshot)(https://user-images.githubusercontent.com/829923/39082432-207d7324-454b-11e8-97b9-a049874ec2fb.png)
+![Screenshot](https://user-images.githubusercontent.com/829923/39082432-207d7324-454b-11e8-97b9-a049874ec2fb.png)
